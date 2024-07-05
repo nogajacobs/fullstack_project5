@@ -1,0 +1,65 @@
+/* CompleteProfilePage.css */
+
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .user-details {
+    margin-bottom: 20px;
+    text-align: center; /* מרכז את הכותרת */
+  }
+  
+  .user-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .user-details p {
+    margin-bottom: 5px;
+  }
+  
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* שני עמודות שוות */
+    gap: 20px; /* רווח בין העמודות והשורות */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .form-group input[type="text"]:disabled {
+    background-color: #f0f0f0;
+  }
+  
+  button {
+    grid-column: span 2; /* הכפתור יתפוס את כל הרוחב של שתי העמודות */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

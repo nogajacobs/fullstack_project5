@@ -1,0 +1,277 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const CompleteProfilePage = () => {
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState({
+    street: '',
+    suite: '',
+    city: '',
+    zipcode: '',
+    geo: { lat: '', lng: '' }
+  });
+  const [phone, setPhone] = useState('');
+  const [website, setWebsite] = useState('');
+  const [company, setCompany] = useState({ name: '', catchPhrase: '', bs: '' });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+    // Handle the case where currentUser is not found or doesn't have an id
+    console.error('User not found in local storage');
+    return;
+}
+
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Get current user from local storage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    // Check if currentUser is valid
+    if (!currentUser) {
+      console.error('User not found in local storage or missing id');
+      return;
+    }
+  
+    try {
+      // Send PUT request to update user information
+      const response = await axios.put(`https://jsonplaceholder.typicode.com/users/${currentUser.id}`, {
+        name, email, address, phone, website, company
+      });
+  
+      // Update local storage with updated user data
+      localStorage.setItem('currentUser', JSON.stringify(response.data));
+      navigate('/home'); // Navigate to home page after successful update
+    } catch (error) {
+      console.error('Error updating user information:', error);
+    }
+  };
+  
+  
+
+  return (
+    <div>
+      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+        <h2>Complete Your Profile</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Full Name:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your full name"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email address"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Street:
+            <input
+              type="text"
+              value={address.street}
+              onChange={(e) => setAddress({ ...address, street: e.target.value })}
+              placeholder="Enter your street address"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Suite:
+            <input
+              type="text"
+              value={address.suite}
+              onChange={(e) => setAddress({ ...address, suite: e.target.value })}
+              placeholder="Enter your suite or apartment number"
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            City:
+            <input
+              type="text"
+              value={address.city}
+              onChange={(e) => setAddress({ ...address, city: e.target.value })}
+              placeholder="Enter your city"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Zip Code:
+            <input
+              type="text"
+              value={address.zipcode}
+              onChange={(e) => setAddress({ ...address, zipcode: e.target.value })}
+              placeholder="Enter your zip code"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Latitude:
+            <input
+              type="text"
+              value={address.geo.lat}
+              onChange={(e) => setAddress({ ...address, geo: { ...address.geo, lat: e.target.value } })}
+              placeholder="Enter latitude"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Longitude:
+            <input
+              type="text"
+              value={address.geo.lng}
+              onChange={(e) => setAddress({ ...address, geo: { ...address.geo, lng: e.target.value } })}
+              placeholder="Enter longitude"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Phone:
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Enter your phone number"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Website:
+            <input
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              placeholder="Enter your website URL"
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Company Name:
+            <input
+              type="text"
+              value={company.name}
+              onChange={(e) => setCompany({ ...company, name: e.target.value })}
+              placeholder="Enter your company name"
+              required
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Catch Phrase:
+            <input
+              type="text"
+              value={company.catchPhrase}
+              onChange={(e) => setCompany({ ...company, catchPhrase: e.target.value })}
+              placeholder="Enter your company catch phrase"
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <label>
+            Business Strategy (BS):
+            <input
+              type="text"
+              value={company.bs}
+              onChange={(e) => setCompany({ ...company, bs: e.target.value })}
+              placeholder="Enter your business strategy"
+              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+            />
+          </label>
+          <button type="submit" style={{ padding: '10px 20px' }}>Complete Registration</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default CompleteProfilePage;
+
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const CompleteProfilePage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState({
+    street: '',
+    suite: '',
+    city: '',
+    zipcode: '',
+    geo: { lat: '', lng: '' }
+  });
+  const [phone, setPhone] = useState('');
+  const [website, setWebsite] = useState('');
+  const [company, setCompany] = useState({ name: '', catchPhrase: '', bs: '' });
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (!currentUser) {
+      console.error('User not found in local storage');
+      return;
+    }
+
+    try {
+      const updatedUser = {
+        ...currentUser,
+        name,
+        email,
+        address,
+        phone,
+        website,
+        company
+      };
+
+      await fetch(`http://localhost:3001/users/${currentUser.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedUser),
+      });
+
+      localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+      navigate('/home');
+    } catch (error) {
+      console.error('Error updating user information:', error);
+    }
+  };
+
+  return (
+    <div>
+      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+        <h2>Complete Your Profile</h2>
+        <form onSubmit={handleSubmit}>
+          {/* Form inputs for profile completion */}
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default CompleteProfilePage;
