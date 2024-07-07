@@ -1,92 +1,54 @@
-/* General styles for the login page */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #e0f7fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .container {
     max-width: 400px;
-    width: 100%;
-    margin: 20px;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-h2 {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  h2 {
     text-align: center;
-    color: #00796b;
-    margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input {
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #00796b;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-input[type="text"], input[type="password"] {
+    color: #1877f2;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input {
     width: 100%;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 12px;
-    background-color: #00796b;
-    color: white;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .login-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #1877f2;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #004d40;
-}
-
-button:active {
-    background-color: #00332f;
-}
-
-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.5);
-}
-
-p {
-    text-align: center;
-    color: #00796b;
-}
-
-p a {
-    color: #004d40;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-p a:hover {
-    text-decoration: underline;
-}
-
-.error-message {
-    color: #d32f2f;
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-}
+  }
+  
+  button:hover {
+    background-color: #166fe5;
+  }
+  

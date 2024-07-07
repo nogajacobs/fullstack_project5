@@ -1,0 +1,312 @@
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #1c1e21;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* LoginPage styles */
+  .LoginPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .LoginPage h2 {
+    margin-bottom: 20px;
+    color: #1877f2;
+    font-size: 2rem;
+  }
+  
+  .LoginPage form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .LoginPage .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .LoginPage .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #606770;
+  }
+  
+  .LoginPage .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .LoginPage .login-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .LoginPage .login-buttons button {
+    padding: 10px 20px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .LoginPage .login-buttons button:hover {
+    background-color: #165db3;
+  }
+  
+  .LoginPage .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  /* RegisterPage styles */
+  .RegisterPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .RegisterPage h1 {
+    margin-bottom: 20px;
+    color: #1877f2;
+    font-size: 2.5rem;
+  }
+  
+  .RegisterPage form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .RegisterPage .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .RegisterPage .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #606770;
+  }
+  
+  .RegisterPage .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  /* CompleteProfilePage styles */
+  .CompleteProfilePage {
+    padding: 20px;
+  }
+  
+  .CompleteProfilePage .user-details {
+    margin-bottom: 20px;
+  }
+  
+  .CompleteProfilePage form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .CompleteProfilePage .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .CompleteProfilePage .form-group label {
+    margin-bottom: 5px;
+    color: #606770;
+  }
+  
+  .CompleteProfilePage .form-group input {
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .CompleteProfilePage button {
+    grid-column: span 2;
+    padding: 10px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .CompleteProfilePage button:hover {
+    background-color: #165db3;
+  }
+  
+  /* HomePage styles */
+  .HomePage {
+    text-align: center;
+  }
+  
+  .HomePage h2 {
+    margin-bottom: 20px;
+    color: #1877f2;
+    font-size: 2rem;
+  }
+  
+  .HomePage button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .HomePage button:hover {
+    background-color: #165db3;
+  }
+  
+  /* TodosPage styles */
+  .TodosPage {
+    padding: 20px;
+  }
+  
+  .TodosPage ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .TodosPage li {
+    padding: 10px;
+    border-bottom: 1px solid #dddfe2;
+  }
+  
+  .TodosPage li:last-child {
+    border-bottom: none;
+  }
+  
+  /* PostsPage styles */
+  .PostsPage {
+    padding: 20px;
+  }
+  
+  .PostsPage ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .PostsPage li {
+    padding: 10px;
+    border-bottom: 1px solid #dddfe2;
+  }
+  
+  .PostsPage li:last-child {
+    border-bottom: none;
+  }
+  
+  .PostsPage button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .PostsPage button:hover {
+    background-color: #165db3;
+  }
+  
+  /* AlbumsPage styles */
+  .AlbumsPage {
+    padding: 20px;
+  }
+  
+  .AlbumsPage ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .AlbumsPage li {
+    padding: 10px;
+    border-bottom: 1px solid #dddfe2;
+  }
+  
+  .AlbumsPage li:last-child {
+    border-bottom: none;
+  }
+  
+  /* InfoPage styles */
+  .InfoPage {
+    padding: 20px;
+  }
+  
+  .InfoPage .user-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .InfoPage .user-info div {
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+  }
+  
+  /* PhotosPage styles */
+  .PhotosPage {
+    padding: 20px;
+  }
+  
+  .PhotosPage .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  
+  .PhotosPage .photo-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .PhotosPage .photo-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  

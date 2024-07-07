@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+//import '../style/RegisterPage.css';
+import '../style/style.css';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+//import '../style/HomePage.css';
+import '../style/style.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')));
 
   useEffect(() => {
-    // Get current user from local storage
     const user = localStorage.getItem('currentUser');
     if (user) {
       setCurrentUser(JSON.parse(user));
@@ -14,25 +15,20 @@ const HomePage = () => {
   }, []);
 
   const handleLogout = () => {
-    // Clear current user from local storage
     localStorage.removeItem('currentUser');
-    // Navigate to the login page or any other appropriate page
     navigate('/login');
   };
 
   return (
     <div>
-      <h2>Welcome to Home Page</h2>
-      {currentUser && (
-        <div>
-          <h3>User Details</h3>
-          <p>Username: {currentUser.username}</p>
-          <p>Name: {currentUser.name}</p>
-          <p>Email: {currentUser.email}</p>
-          {/* Display other user details as needed */}
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
+      <h2>Welcome, {currentUser ? currentUser.name : 'Guest'}</h2>
+      <div>
+        <button onClick={() => navigate(`/home/${currentUser.username}/info/${currentUser.id}`)}>Info</button>
+        <button onClick={() => navigate(`/home/${currentUser.username}/todos/${currentUser.id}`)}>Todos</button>
+        <button onClick={() => navigate(`/home/${currentUser.username}/posts/${currentUser.id}`)}>Posts</button>
+        <button onClick={() => navigate(`/home/${currentUser.username}/albums/${currentUser.id}`)}>Albums</button>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/LoginPage.css'; // Include the CSS file
+//import '../style/LoginPage.css';
+import '../style/style.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const LoginPage = () => {
       }
 
       localStorage.setItem("currentUser", JSON.stringify(user));
-      navigate('/home');
+      navigate(`/home/${username}`);
     } catch (error) {
       console.error(error);
       setErrorMessage("An error occurred during login");

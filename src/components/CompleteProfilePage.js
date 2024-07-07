@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../style/CompleteProfilePage.css';
+//import '../style/CompleteProfilePage.css';
+import '../style/style.css';
 
 const CompleteProfilePage = () => {
   const { username, website } = useParams();
@@ -48,7 +49,7 @@ const CompleteProfilePage = () => {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("currentUser", JSON.stringify(data));
-        navigate('/home');
+        navigate(`/home/${username}`);
       } else {
         alert('Registration completion failed');
       }
