@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../style/LoginPage.css';
-import '../style/style.css';
 
+/**
+ * LoginPage component handles user login.
+ * It allows the user to enter a username and website for authentication.
+ */
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [website, setWebsite] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Hook to navigate programmatically
+  const [username, setUsername] = useState(''); // State to hold the username input
+  const [website, setWebsite] = useState(''); // State to hold the website input
+  const [errorMessage, setErrorMessage] = useState(''); // State to hold any error messages
 
+  /**
+   * Handles changes in the username input field.
+   * @param {Object} event - The input change event.
+   */
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
 
+  /**
+   * Handles changes in the website input field.
+   * @param {Object} event - The input change event.
+   */
   const handleWebsiteChange = (event) => {
     setWebsite(event.target.value);
   };
 
+  /**
+   * Handles the login process.
+   * Fetches user data from the server and validates the username and website.
+   * @param {Object} e - The form submit event.
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!username || !website) {
@@ -41,14 +56,18 @@ const LoginPage = () => {
         return;
       }
 
+      // Store the user data in localStorage
       localStorage.setItem("currentUser", JSON.stringify(user));
-      navigate(`/home/${username}`);
+      navigate(`/home/${username}`); // Navigate to the home page
     } catch (error) {
       console.error(error);
       setErrorMessage("An error occurred during login");
     }
   };
 
+  /**
+   * Handles the navigation to the registration page.
+   */
   const handleRegister = () => {
     navigate('/register');
   };

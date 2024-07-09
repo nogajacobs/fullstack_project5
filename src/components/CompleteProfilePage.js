@@ -1,54 +1,71 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-//import '../style/CompleteProfilePage.css';
-import '../style/style.css';
 
+/**
+ * CompleteProfilePage component allows the user to complete their profile
+ * with additional information after registering.
+ */
 const CompleteProfilePage = () => {
-  const { username, website } = useParams();
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [street, setStreet] = useState('');
-  const [suite, setSuite] = useState('');
-  const [city, setCity] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
-  const [phone, setPhone] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [catchPhrase, setCatchPhrase] = useState('');
-  const [bs, setBs] = useState('');
-  const navigate = useNavigate();
+  const { username, website } = useParams(); // Get the username and website from the URL parameters
+  const [id, setId] = useState(''); // State to hold the user ID input
+  const [name, setName] = useState(''); // State to hold the full name input
+  const [email, setEmail] = useState(''); // State to hold the email input
+  const [street, setStreet] = useState(''); // State to hold the street input
+  const [suite, setSuite] = useState(''); // State to hold the suite input
+  const [city, setCity] = useState(''); // State to hold the city input
+  const [zipcode, setZipcode] = useState(''); // State to hold the zipcode input
+  const [lat, setLat] = useState(''); // State to hold the latitude input
+  const [lng, setLng] = useState(''); // State to hold the longitude input
+  const [phone, setPhone] = useState(''); // State to hold the phone input
+  const [companyName, setCompanyName] = useState(''); // State to hold the company name input
+  const [catchPhrase, setCatchPhrase] = useState(''); // State to hold the catch phrase input
+  const [bs, setBs] = useState(''); // State to hold the bs input
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
+  /**
+   * Handles the form submission to complete the user's profile.
+   * Sends a POST request with the form data to the server.
+   * @param {Object} e - The form submit event.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('id', id);
-    formData.append('username', username);
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('street', street);
-    formData.append('suite', suite);
-    formData.append('city', city);
-    formData.append('zipcode', zipcode);
-    formData.append('lat', lat);
-    formData.append('lng', lng);
-    formData.append('phone', phone);
-    formData.append('website', website);
-    formData.append('companyName', companyName);
-    formData.append('catchPhrase', catchPhrase);
-    formData.append('bs', bs);
+    const formData = {
+      id,
+      username,
+      name,
+      email,
+      address: {
+        street,
+        suite,
+        city,
+        zipcode,
+        geo: {
+          lat,
+          lng,
+        },
+      },
+      phone,
+      website,
+      company: {
+        name: companyName,
+        catchPhrase,
+        bs,
+      },
+    };
 
     try {
-      const response = await fetch('http://localhost:3000/users', {
+      const response = await fetch('http://localhost:3001/users', {
         method: 'POST',
-        body: formData
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("currentUser", JSON.stringify(data));
+        localStorage.setItem('currentUser', JSON.stringify(data));
         navigate(`/home/${username}`);
       } else {
         alert('Registration completion failed');
@@ -181,6 +198,7 @@ const CompleteProfilePage = () => {
         </div>
         <button type="submit">Complete Registration</button>
       </form>
+      <button onClick={() => navigate('/login')}>Return to Login</button>
     </div>
   );
 };

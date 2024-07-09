@@ -16,22 +16,8 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
-  /* LoginPage styles */
-  .LoginPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .LoginPage h2 {
-    margin-bottom: 20px;
-    color: #1877f2;
-    font-size: 2rem;
-  }
-  
-  .LoginPage form {
+  /* Form styles */
+  form {
     width: 100%;
     max-width: 400px;
     background-color: #fff;
@@ -40,49 +26,52 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .LoginPage .form-group {
+  .form-group {
     margin-bottom: 15px;
   }
   
-  .LoginPage .form-group label {
+  .form-group label {
     display: block;
     margin-bottom: 5px;
     color: #606770;
   }
   
-  .LoginPage .form-group input {
+  .form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #dddfe2;
     border-radius: 6px;
     box-sizing: border-box;
+    transition: border-color 0.3s;
   }
   
-  .LoginPage .login-buttons {
-    display: flex;
-    justify-content: space-between;
+  .form-group input:focus {
+    border-color: #1877f2;
+    outline: none;
   }
   
-  .LoginPage .login-buttons button {
+  /* Button styles */
+  button {
     padding: 10px 20px;
     background-color: #1877f2;
     color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
-  .LoginPage .login-buttons button:hover {
+  button:hover {
     background-color: #165db3;
+    transform: translateY(-2px);
   }
   
-  .LoginPage .error-message {
-    color: red;
-    margin-bottom: 10px;
+  button:active {
+    transform: translateY(0);
   }
   
-  /* RegisterPage styles */
+  /* LoginPage styles */
+  .LoginPage,
   .RegisterPage {
     display: flex;
     flex-direction: column;
@@ -91,37 +80,11 @@ body {
     height: 100vh;
   }
   
+  .LoginPage h2,
   .RegisterPage h1 {
     margin-bottom: 20px;
     color: #1877f2;
-    font-size: 2.5rem;
-  }
-  
-  .RegisterPage form {
-    width: 100%;
-    max-width: 400px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .RegisterPage .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .RegisterPage .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #606770;
-  }
-  
-  .RegisterPage .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #dddfe2;
-    border-radius: 6px;
-    box-sizing: border-box;
+    font-size: 2rem;
   }
   
   /* CompleteProfilePage styles */
@@ -144,31 +107,8 @@ body {
     flex-direction: column;
   }
   
-  .CompleteProfilePage .form-group label {
-    margin-bottom: 5px;
-    color: #606770;
-  }
-  
-  .CompleteProfilePage .form-group input {
-    padding: 10px;
-    border: 1px solid #dddfe2;
-    border-radius: 6px;
-    box-sizing: border-box;
-  }
-  
   .CompleteProfilePage button {
     grid-column: span 2;
-    padding: 10px;
-    background-color: #1877f2;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .CompleteProfilePage button:hover {
-    background-color: #165db3;
   }
   
   /* HomePage styles */
@@ -184,94 +124,35 @@ body {
   
   .HomePage button {
     margin: 10px;
-    padding: 10px 20px;
-    background-color: #1877f2;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .HomePage button:hover {
-    background-color: #165db3;
   }
   
   /* TodosPage styles */
-  .TodosPage {
+  .TodosPage,
+  .PostsPage,
+  .AlbumsPage,
+  .InfoPage,
+  .PhotosPage {
     padding: 20px;
   }
   
-  .TodosPage ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .TodosPage li {
-    padding: 10px;
-    border-bottom: 1px solid #dddfe2;
-  }
-  
-  .TodosPage li:last-child {
-    border-bottom: none;
-  }
-  
-  /* PostsPage styles */
-  .PostsPage {
-    padding: 20px;
-  }
-  
-  .PostsPage ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .PostsPage li {
-    padding: 10px;
-    border-bottom: 1px solid #dddfe2;
-  }
-  
-  .PostsPage li:last-child {
-    border-bottom: none;
-  }
-  
-  .PostsPage button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #1877f2;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .PostsPage button:hover {
-    background-color: #165db3;
-  }
-  
-  /* AlbumsPage styles */
-  .AlbumsPage {
-    padding: 20px;
-  }
-  
+  .TodosPage ul,
+  .PostsPage ul,
   .AlbumsPage ul {
     list-style: none;
     padding: 0;
   }
   
+  .TodosPage li,
+  .PostsPage li,
   .AlbumsPage li {
     padding: 10px;
     border-bottom: 1px solid #dddfe2;
   }
   
+  .TodosPage li:last-child,
+  .PostsPage li:last-child,
   .AlbumsPage li:last-child {
     border-bottom: none;
-  }
-  
-  /* InfoPage styles */
-  .InfoPage {
-    padding: 20px;
   }
   
   .InfoPage .user-info {
@@ -284,11 +165,6 @@ body {
     padding: 10px;
     border: 1px solid #dddfe2;
     border-radius: 6px;
-  }
-  
-  /* PhotosPage styles */
-  .PhotosPage {
-    padding: 20px;
   }
   
   .PhotosPage .photo-grid {

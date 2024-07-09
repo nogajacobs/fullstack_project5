@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-//import '../style/InfoPage.css';
-import '../style/style.css';
 
+/**
+ * InfoPage component fetches and displays detailed user information.
+ * It retrieves user data based on the userId from the URL parameters
+ * and allows navigation back to the HomePage.
+ */
 const InfoPage = () => {
-  const { username, userId } = useParams();
+  const { username, userId } = useParams(); // Extract username and userId from URL parameters
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(null); // State to hold the user information
 
+  // useEffect to fetch user information when the component mounts
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -25,6 +29,9 @@ const InfoPage = () => {
     fetchUserInfo();
   }, [userId]);
 
+  /**
+   * handleReturnHome function navigates back to the HomePage.
+   */
   const handleReturnHome = () => {
     navigate(`/home/${username}`);
   };
@@ -58,12 +65,3 @@ const InfoPage = () => {
 };
 
 export default InfoPage;
-
-
-//import React from 'react';
-
-//const InfoPage = () => {
-// return <div>hello you in page Info</div>;
-//};
-
-//export default InfoPage;

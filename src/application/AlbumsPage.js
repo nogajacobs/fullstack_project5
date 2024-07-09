@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../style/AlbumsPage.css';
-import '../style/style.css';
 
+/**
+ * AlbumsPage component displays a list of albums for the current user.
+ * Allows adding new albums, searching by album ID or title, deleting albums,
+ * and navigating to the PhotosPage for a specific album.
+ */
 const AlbumsPage = () => {
   const navigate = useNavigate();
 
@@ -11,6 +14,7 @@ const AlbumsPage = () => {
   const username = currentUser.username;
   const userId = currentUser.id;
 
+  // State variables
   const [albums, setAlbums] = useState([]);
   const [newAlbumTitle, setNewAlbumTitle] = useState('');
   const [searchCriteria, setSearchCriteria] = useState({
@@ -18,6 +22,7 @@ const AlbumsPage = () => {
     title: ''
   });
 
+  // Fetch albums for the current user from the server
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
@@ -42,6 +47,7 @@ const AlbumsPage = () => {
     fetchAlbums();
   }, [userId, searchCriteria]);
 
+  // Handle change in search input fields
   const handleSearchChange = (e) => {
     const { name, value } = e.target;
     setSearchCriteria(prevCriteria => ({
@@ -50,11 +56,12 @@ const AlbumsPage = () => {
     }));
   };
 
+  // Handle adding a new album
   const handleAddAlbum = async (e) => {
     e.preventDefault();
     const newAlbum = {
       userId: parseInt(userId),
-      id: getMaxAlbumId() + 1,
+      id: (getMaxAlbumId() + 1).toString(),
       title: newAlbumTitle,
     };
     try {
@@ -75,15 +82,18 @@ const AlbumsPage = () => {
     }
   };
 
+  // Function to get the maximum album ID currently in use
   const getMaxAlbumId = () => {
     const maxId = albums.reduce((max, album) => (parseInt(album.id) > max ? parseInt(album.id) : max), 0);
     return maxId;
   };
 
+  // Navigate to the PhotosPage for the selected album
   const goToPhotosPage = (albumId) => {
     navigate(`/home/${username}/albums/${userId}/photos/${albumId}`);
   };
 
+  // Handle deleting an album
   const handleDeleteAlbum = async (id) => {
     try {
       const response = await fetch(`http://localhost:3001/albums/${id}`, {
@@ -102,6 +112,7 @@ const AlbumsPage = () => {
   return (
     <div>
       <h2>Albums List</h2>
+      {/* Form to add a new album */}
       <form onSubmit={handleAddAlbum}>
         <input
           type="text"
@@ -112,6 +123,7 @@ const AlbumsPage = () => {
         />
         <button type="submit">Add Album</button>
       </form>
+      {/* Form for searching albums */}
       <form>
         <input
           type="text"
@@ -128,16 +140,20 @@ const AlbumsPage = () => {
           placeholder="Search by Title"
         />
       </form>
+      {/* List of albums */}
       <ul>
         {albums.map(album => (
           <li key={album.id}>
+            {/* Button to navigate to PhotosPage for the album */}
             <button onClick={() => goToPhotosPage(album.id)}>
               {`${album.id} - ${album.title}`}
             </button>
+            {/* Button to delete the album */}
             <button onClick={() => handleDeleteAlbum(album.id)}>Delete Album</button>
           </li>
         ))}
       </ul>
+      {/* Button to return to the Home page */}
       <button onClick={() => navigate(`/home/${username}`)}>Return to Home</button>
     </div>
   );
